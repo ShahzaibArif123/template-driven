@@ -1,0 +1,34 @@
+<div class="box rounded shadow">
+  <h1 class="text-success">Template Driven Form</h1>
+<form (ngSubmit)="onSubmit(myForm)" #myForm="ngForm">
+  <div ngModelGroup="userDetails" #userDetails="ngModelGroup">
+  <div class="form-group">
+    <label for="username" class="form-label">Username:</label>
+    <input type="text" name="username" class="form-control" id="username" 
+    placeholder="Enter username" [(ngModel)]="userName" required #username="ngModel">
+    <small class="text-danger" *ngIf="!username.valid && username.touched">Please enter username</small>
+    <small *ngIf="userName"> Your username is: <span class="text-success bold">{{userName}}</span></small>
+  </div>
+  <div class="form-group">
+    <label for="email" class="form-label">Email:</label>
+    <input type="email" name="email" class="form-control" id="email" 
+    placeholder="Enter email" ngModel required email #email="ngModel">
+    <small class="text-danger" *ngIf="!email.valid && email.touched">Please enter valid email</small>
+  </div>
+</div> 
+  <div class="form-group">
+    <label for="adress" class="form-label">Adress:</label>
+    <input type="text" name="adress" class="form-control" id="adress"
+     placeholder="enter adress" ngModel>
+  </div>
+  <div class="form-group">
+    <label for="contact" class="form-label">Contact:</label>
+    <input type="text" name="contact" class="form-control" id="contact"
+     placeholder="enter contact number" ngModel required #contact="ngModel" pattern="[0-9]{11}" >
+     <small class="text-danger" *ngIf="!contact.valid && contact.touched">Please enter contact</small>
+  </div>
+  
+ 
+  <button type="submit" [disabled]="!myForm.valid" class="btn btn-success mt-3">Submit</button>
+</form>
+</div>
